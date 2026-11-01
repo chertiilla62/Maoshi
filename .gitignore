@@ -1,0 +1,37 @@
+# Unity
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+sysinfo.txt
+crashlytics-build.properties
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.slnx
+*.suo
+*.user
+*.userprefs
+
+# Платный ассет Unity Asset Store — по лицензии нельзя выкладывать в открытый доступ.
+# Каждый разработчик покупает и импортирует его сам (см. README).
+/Assets/AnimX Animals/
+/Assets/AnimX Animals.meta
+
+# Локальные инструменты
+/.maoshi_tools/
+.mcp.json
+/ProjectSettings/McpUnitySettings.json
+steam_appid.txt

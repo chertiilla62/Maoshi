@@ -1,0 +1,161 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AM_CatFrontBody
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 0
+  - m_Path: Cat
+    m_Weight: 0
+  - m_Path: Cat/Root
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/Spine.1
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/ear.L
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/ear.R
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.L
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.L/Cat.R_Eye.L_LOD0
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.L/Cat.R_Eye.L_LOD1
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.L/Cat.R_Eye.L_LOD2
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.L/Cat.R_Eye.L_LOD3
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.L/Cat.R_Eye.L_LOD4
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.L/Cat.R_Eye.L_LOD5
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.R
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.R/Cat.R_Eye.R_LOD0
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.R/Cat.R_Eye.R_LOD1
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.R/Cat.R_Eye.R_LOD2
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.R/Cat.R_Eye.R_LOD3
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.R/Cat.R_Eye.R_LOD4
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/eye.R/Cat.R_Eye.R_LOD5
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/jaw
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/lid_down.L
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/lid_down.R
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/lid_up.L
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/lid_up.R
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/nose.L
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/nose.R
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/tongue
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/tongue/tongue.1
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/tongue/tongue.1/tongue.2
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/tongue/tongue.1/tongue.2/tongue.3
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Neck/Neck.1/Head/tongue/tongue.1/tongue.2/tongue.3/tongue.4
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Shoulder.L
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Shoulder.L/UpperArm.L
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Shoulder.L/UpperArm.L/Forearm.L
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Shoulder.L/UpperArm.L/Forearm.L/Pastern.L
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Shoulder.L/UpperArm.L/Forearm.L/Pastern.L/Hand.L
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Shoulder.R
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Shoulder.R/UpperArm.R
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Shoulder.R/UpperArm.R/Forearm.R
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Shoulder.R/UpperArm.R/Forearm.R/Pastern.R
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/Spine.1/Spine.2/Spine.3/Shoulder.R/UpperArm.R/Forearm.R/Pastern.R/Hand.R
+    m_Weight: 1
+  - m_Path: Cat/Root/Spine/tail
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/tail/tail.1
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/tail/tail.1/tail.2
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/tail/tail.1/tail.2/tail.3
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/tail/tail.1/tail.2/tail.3/tail.4
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/tail/tail.1/tail.2/tail.3/tail.4/tail.5
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/tail/tail.1/tail.2/tail.3/tail.4/tail.5/tail.6
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/tail/tail.1/tail.2/tail.3/tail.4/tail.5/tail.6/tail.7
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/Thigh.L
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/Thigh.L/Shin.L
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/Thigh.L/Shin.L/Hook.L
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/Thigh.L/Shin.L/Hook.L/Foot.L
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/Thigh.R
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/Thigh.R/Shin.R
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/Thigh.R/Shin.R/Hook.R
+    m_Weight: 0
+  - m_Path: Cat/Root/Spine/Thigh.R/Shin.R/Hook.R/Foot.R
+    m_Weight: 0
+  - m_Path: Cat.R_Body_LOD0
+    m_Weight: 0
+  - m_Path: Cat.R_Body_LOD1
+    m_Weight: 0
+  - m_Path: Cat.R_Body_LOD2
+    m_Weight: 0
+  - m_Path: Cat.R_Body_LOD3
+    m_Weight: 0
+  - m_Path: Cat.R_Body_LOD4
+    m_Weight: 0
+  - m_Path: Cat.R_Body_LOD5
+    m_Weight: 0
+  - m_Path: Cat.R_Fur_LOD0
+    m_Weight: 0
+  - m_Path: Cat.R_Fur_LOD1
+    m_Weight: 0
+  - m_Path: Cat.R_Fur_LOD2
+    m_Weight: 0
+  - m_Path: Cat.R_Fur_LOD3
+    m_Weight: 0
+  - m_Path: Cat.R_Fur_LOD4
+    m_Weight: 0

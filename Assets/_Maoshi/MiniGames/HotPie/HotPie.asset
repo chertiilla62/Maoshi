@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a8f546946a5bf4086e1fc65668e764, type: 3}
+  m_Name: HotPie
+  m_EditorClassIdentifier: Assembly-CSharp::Maoshi.Session.MiniGameDefinition
+  id: hot_pie
+  displayName: "\u0413\u043E\u0440\u044F\u0447\u0438\u0439 \u043F\u0438\u0440\u043E\u0436\u043E\u043A"
+  description: "\u0411\u0430\u0431\u0443\u0448\u043A\u0430 \u043A\u0438\u0434\u0430\u0435\u0442
+    \u0440\u0430\u0441\u043A\u0430\u043B\u0451\u043D\u043D\u044B\u0439 \u043F\u0438\u0440\u043E\u0436\u043E\u043A.
+    \u041F\u0435\u0440\u0435\u0434\u0430\u0439 \u0435\u0433\u043E \u0442\u043E\u043B\u0447\u043A\u043E\u043C,
+    \u043F\u043E\u043A\u0430 \u043E\u043D \u043D\u0435 \u0441\u0434\u0435\u043B\u0430\u043B
+    \xAB\u043F\u0443\u0444\xBB! \u0423 \u043A\u043E\u0433\u043E \u0432\u0437\u043E\u0440\u0432\u0430\u043B\u0441\u044F
+    \u2014 \u0432\u044B\u0431\u044B\u043B, \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0439
+    \u043E\u0441\u0442\u0430\u0432\u0448\u0438\u0439\u0441\u044F \u043F\u043E\u0431\u0435\u0436\u0434\u0430\u0435\u0442."
+  sceneName: HotPie
+  minPlayers: 2
+  fishByPlace: 0a00000007000000050000000400000003000000020000000100000001000000

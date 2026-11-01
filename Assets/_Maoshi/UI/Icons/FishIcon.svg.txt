@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFB24A"/>
+      <stop offset="0.55" stop-color="#F58A2A"/>
+      <stop offset="1" stop-color="#E06A1E"/>
+    </linearGradient>
+    <linearGradient id="belly" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFE3B0"/>
+      <stop offset="1" stop-color="#FFC877"/>
+    </linearGradient>
+    <linearGradient id="fin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FF9E3D"/>
+      <stop offset="1" stop-color="#D8571A"/>
+    </linearGradient>
+  </defs>
+  <g stroke="#4A2214" stroke-width="16" stroke-linejoin="round" stroke-linecap="round">
+    <!-- tail -->
+    <path d="M118 256 L36 168 Q24 156 34 184 L58 256 L34 328 Q24 356 36 344 Z" fill="url(#fin)"/>
+    <!-- top fin -->
+    <path d="M210 150 Q250 76 330 110 Q300 128 296 150 Z" fill="url(#fin)"/>
+    <!-- bottom fin -->
+    <path d="M240 356 Q262 408 312 400 Q292 380 296 356 Z" fill="url(#fin)"/>
+    <!-- body -->
+    <path d="M110 256 Q170 140 300 142 Q420 146 474 256 Q420 366 300 370 Q170 372 110 256 Z" fill="url(#body)"/>
+  </g>
+  <!-- belly -->
+  <path d="M170 292 Q250 352 360 340 Q420 330 452 290 Q400 318 330 318 Q240 318 170 292 Z" fill="url(#belly)" opacity="0.95"/>
+  <!-- scales -->
+  <g fill="none" stroke="#C9561A" stroke-width="9" stroke-linecap="round" opacity="0.55">
+    <path d="M200 214 Q222 240 200 266"/>
+    <path d="M244 196 Q268 226 244 256"/>
+    <path d="M244 262 Q264 284 248 304"/>
+    <path d="M288 190 Q312 222 288 254"/>
+    <path d="M290 262 Q310 286 294 308"/>
+  </g>
+  <!-- gill -->
+  <path d="M358 190 Q338 256 360 322" fill="none" stroke="#B8501A" stroke-width="10" stroke-linecap="round" opacity="0.8"/>
+  <!-- eye -->
+  <circle cx="404" cy="230" r="27" fill="#FFFFFF" stroke="#4A2214" stroke-width="10"/>
+  <circle cx="411" cy="232" r="13" fill="#1E1210"/>
+  <circle cx="406" cy="225" r="5" fill="#FFFFFF"/>
+  <!-- mouth -->
+  <path d="M452 276 Q440 286 428 282" fill="none" stroke="#4A2214" stroke-width="9" stroke-linecap="round"/>
+  <!-- highlight -->
+  <path d="M200 176 Q260 150 330 160" fill="none" stroke="#FFF1C9" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+</svg>

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bda7b0b8ef9d814f9ffe8a51a4c5c21, type: 3}
+  m_Name: MiniGameCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::Maoshi.Session.MiniGameCatalog
+  miniGames:
+  - {fileID: 11400000, guid: 693680df379ddaa4dae414ac79189fdb, type: 2}
+  - {fileID: 11400000, guid: 3e1717a95e45c5b46832c8e405d30b46, type: 2}
+  - {fileID: 11400000, guid: 06da809a4ae47ae41a4f2362193c7275, type: 2}
+  - {fileID: 11400000, guid: 6bebe0e66dde6464aa4ba53973e356c1, type: 2}
+  - {fileID: 11400000, guid: 847f9b6c7d76704459e45aaa44a30e97, type: 2}
+  - {fileID: 11400000, guid: f1156442ead47c14587fdedfa438b049, type: 2}
+  - {fileID: 11400000, guid: 6238fdc1b45690e44af15c8bb4694e36, type: 2}
+  - {fileID: 11400000, guid: ad32463c5daa6254d80b7d7cfcd42446, type: 2}
+  - {fileID: 11400000, guid: b479576ee25cf594c875d1830e3127c1, type: 2}
+  - {fileID: 11400000, guid: 43b01d5bda97d8f4990cd0b98a7b5510, type: 2}
+  - {fileID: 11400000, guid: ac922458bacc8734889c26b7aa3aaf66, type: 2}
+  - {fileID: 11400000, guid: 79b3ca53e8f36c942a49611303391061, type: 2}
+  - {fileID: 11400000, guid: 94c0137894f6756459a3d578d356b08b, type: 2}
+  - {fileID: 11400000, guid: 10a51110bc8fb4c4e9b2660e59346d83, type: 2}
+  - {fileID: 11400000, guid: e0bc5d8a9a428ff4799715dc20151eee, type: 2}

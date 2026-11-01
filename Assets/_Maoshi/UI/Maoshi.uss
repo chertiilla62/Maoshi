@@ -1,0 +1,2636 @@
+/* ─────────────────────────────────────────────────────────────
+   Maoshi — стили интерфейса (UI Toolkit). Стиль «двор-стикер»:
+   кремовые наклейки с толстым тёмным контуром и жёсткой тенью (тень — отдельный элемент,
+   его ставит UIKit у каждой .panel), вечерний двор фоном, рыжий — главное действие,
+   бирюзовый — второе, жёлтый — рыбки и цель. Кнопки «стоят» на толстом нижнем крае.
+   Цвета: чернила #22172A, сливки #FFF1DA, картон #F2DFC2, вечер #2A2440, сумерки #3A3358,
+   рыжий #FF7F2A, скамейка #27B4A4, рыбка #FFC43A, хитрость #B39AF5, забота #95D66A.
+   Шрифты (если положены в UI/Fonts): Dela Gothic One — заголовки и цифры, Nunito — текст,
+   Neucha — рукописные заметки. Подключаются отдельным MaoshiFonts.uss (Stage 20).
+   ───────────────────────────────────────────────────────────── */
+
+/* Слои: всё на весь экран. */
+.layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.center {
+    align-items: center;
+    justify-content: center;
+}
+
+.dim {
+    background-color: rgba(26, 20, 40, 0.72);
+}
+
+.menu-backdrop {
+    background-color: rgb(42, 36, 64);
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.menu-backdrop__shade {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(42, 36, 64, 0.84);
+}
+
+.chalk-layer {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+/* ───────── Панели-наклейки ───────── */
+
+.panel {
+    background-color: rgb(255, 241, 218);
+    border-radius: 26px;
+    border-width: 4px;
+    border-color: rgb(34, 23, 42);
+    padding: 26px 30px;
+    width: 560px;
+    max-width: 92%;
+    color: rgb(34, 23, 42);
+}
+
+/* Жёсткая тень под наклейкой (элемент ставит UIKit). */
+.sticker-shadow {
+    position: absolute;
+    background-color: rgb(34, 23, 42);
+}
+
+.panel--narrow {
+    width: 500px;
+}
+
+.panel--wide {
+    width: 820px;
+}
+
+.panel--hud {
+    border-radius: 22px;
+    padding: 14px 16px;
+    width: auto;
+}
+
+/* ───────── Текст ───────── */
+
+.title {
+    font-size: 112px;
+    color: rgb(255, 241, 218);
+    -unity-text-outline-width: 4px;
+    -unity-text-outline-color: rgb(34, 23, 42);
+    text-shadow: 7px 7px 0 rgb(34, 23, 42);
+}
+
+.subtitle {
+    font-size: 34px;
+    color: rgb(255, 127, 42);
+    rotate: -5deg;
+    margin-left: 18px;
+    margin-bottom: 18px;
+}
+
+.logo-row {
+    flex-direction: row;
+    align-items: flex-end;
+    margin-bottom: 26px;
+}
+
+.h1 {
+    font-size: 36px;
+    color: rgb(34, 23, 42);
+    margin-bottom: 8px;
+    white-space: normal;
+}
+
+.h2 {
+    font-size: 21px;
+    color: rgb(34, 23, 42);
+    margin-top: 2px;
+    margin-bottom: 6px;
+}
+
+.text {
+    font-size: 19px;
+    color: rgb(34, 23, 42);
+    white-space: normal;
+}
+
+.muted {
+    font-size: 16px;
+    color: rgb(110, 92, 107);
+    white-space: normal;
+}
+
+.accent {
+    color: rgb(206, 92, 18);
+}
+
+.good {
+    color: rgb(23, 121, 110);
+}
+
+.error {
+    font-size: 17px;
+    color: rgb(190, 50, 40);
+    white-space: normal;
+    margin-top: 8px;
+}
+
+/* Подпись над полем — обычным регистром, приглушённо. */
+.label-small-caps {
+    font-size: 17px;
+    color: rgb(110, 92, 107);
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.chalk {
+    font-size: 24px;
+    color: rgb(110, 92, 107);
+}
+
+.chalk--light {
+    color: rgb(255, 196, 58);
+}
+
+/* ───────── Кнопки ───────── */
+
+.btn {
+    height: 54px;
+    margin: 8px 0 0 0;
+    border-radius: 16px;
+    border-width: 4px;
+    border-bottom-width: 8px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 241, 218);
+    color: rgb(34, 23, 42);
+    font-size: 19px;
+    -unity-font-style: bold;
+    transition-property: background-color, translate, border-bottom-width;
+    transition-duration: 0.08s;
+}
+
+.btn:hover {
+    background-color: rgb(255, 250, 240);
+}
+
+.btn:active {
+    border-bottom-width: 4px;
+    translate: 0 4px;
+}
+
+.btn:disabled {
+    border-color: rgb(142, 130, 146);
+    background-color: rgb(237, 227, 211);
+    color: rgb(142, 130, 146);
+    border-bottom-width: 4px;
+}
+
+.btn--primary {
+    height: 72px;
+    border-bottom-width: 11px;
+    border-radius: 20px;
+    background-color: rgb(255, 127, 42);
+    font-size: 28px;
+    -unity-font-style: normal;
+}
+
+.btn--primary:hover {
+    background-color: rgb(255, 150, 80);
+}
+
+.btn--primary:active {
+    border-bottom-width: 4px;
+    translate: 0 7px;
+}
+
+.btn--secondary {
+    background-color: rgb(39, 180, 164);
+}
+
+.btn--secondary:hover {
+    background-color: rgb(66, 198, 182);
+}
+
+.btn--ghost {
+    background-color: rgb(255, 241, 218);
+}
+
+.btn--small {
+    height: 46px;
+    font-size: 17px;
+    padding: 0 16px;
+    border-bottom-width: 7px;
+}
+
+.btn--square {
+    width: 60px;
+    height: 52px;
+    margin: 0 4px;
+    font-size: 19px;
+}
+
+/* Переключатель из двух вариантов. */
+.segmented {
+    flex-direction: row;
+    background-color: rgb(242, 223, 194);
+    border-width: 4px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 16px;
+    padding: 4px;
+}
+
+.segment {
+    flex-grow: 1;
+    height: 44px;
+    margin: 0;
+    border-radius: 11px;
+    border-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(34, 23, 42);
+    font-size: 17px;
+    -unity-font-style: bold;
+}
+
+.segment:hover {
+    background-color: rgba(34, 23, 42, 0.08);
+}
+
+.segment--active {
+    background-color: rgb(34, 23, 42);
+    color: rgb(255, 241, 218);
+}
+
+.segment--active:hover {
+    background-color: rgb(34, 23, 42);
+}
+
+/* ───────── Поля ввода ───────── */
+
+.field {
+    margin: 0;
+}
+
+.field .unity-base-text-field__input,
+.field .unity-text-field__input {
+    height: 56px;
+    background-color: rgb(255, 255, 255);
+    border-width: 4px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 16px;
+    color: rgb(34, 23, 42);
+    font-size: 22px;
+    -unity-font-style: bold;
+    padding-left: 16px;
+}
+
+.field:focus .unity-base-text-field__input,
+.field:focus .unity-text-field__input {
+    border-color: rgb(255, 127, 42);
+}
+
+/* ───────── Строки ───────── */
+
+.row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.row--spread {
+    justify-content: space-between;
+}
+
+.grow {
+    flex-grow: 1;
+}
+
+.spacer {
+    height: 14px;
+}
+
+.divider {
+    flex-direction: row;
+    align-items: center;
+    margin: 16px 0 4px 0;
+}
+
+.divider__line {
+    flex-grow: 1;
+    height: 0;
+    border-top-width: 3px;
+    border-color: rgb(205, 183, 154);
+}
+
+.divider__label {
+    margin: 0 12px;
+    font-size: 22px;
+    color: rgb(110, 92, 107);
+}
+
+.swatch {
+    width: 22px;
+    height: 22px;
+    border-radius: 11px;
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    margin-right: 10px;
+}
+
+.player-row {
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 10px;
+    margin-top: 6px;
+    border-radius: 14px;
+    border-width: 3px;
+    border-color: rgba(0, 0, 0, 0);
+}
+
+.player-row--me {
+    background-color: rgb(255, 215, 174);
+    border-color: rgb(34, 23, 42);
+}
+
+.tag {
+    font-size: 14px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    background-color: rgb(39, 180, 164);
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 10px;
+    padding: 1px 9px;
+    margin-left: 8px;
+}
+
+.tag--ready {
+    background-color: rgb(149, 214, 106);
+}
+
+.tag--waiting {
+    background-color: rgb(242, 223, 194);
+}
+
+/* ───────── HUD ───────── */
+
+.hud-top-left {
+    position: absolute;
+    left: 24px;
+    top: 24px;
+    width: 350px;
+}
+
+.hud-top-right {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    width: 300px;
+}
+
+.hud-bottom-right {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+}
+
+.hud-bottom-left {
+    position: absolute;
+    left: 24px;
+    bottom: 24px;
+}
+
+.banner {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    right: 0;
+    align-items: center;
+}
+
+.banner__plate {
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(255, 241, 218);
+    border-width: 4px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 22px;
+    padding: 8px 22px;
+}
+
+.banner__title {
+    font-size: 30px;
+    color: rgb(34, 23, 42);
+    -unity-text-align: middle-center;
+}
+
+.banner__sub {
+    font-size: 17px;
+    -unity-font-style: bold;
+    color: rgb(255, 241, 218);
+    background-color: rgb(34, 23, 42);
+    border-radius: 12px;
+    padding: 5px 14px;
+    -unity-text-align: middle-center;
+    margin-top: 10px;
+    white-space: normal;
+    max-width: 900px;
+}
+
+.banner__warn {
+    font-size: 17px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    background-color: rgb(255, 196, 58);
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 12px;
+    padding: 4px 14px;
+    -unity-text-align: middle-center;
+    margin-top: 8px;
+}
+
+.big-center {
+    font-size: 150px;
+    color: rgb(255, 196, 58);
+    -unity-text-align: middle-center;
+    -unity-text-outline-width: 5px;
+    -unity-text-outline-color: rgb(34, 23, 42);
+    text-shadow: 8px 8px 0 rgb(34, 23, 42);
+}
+
+.big-center--title {
+    font-size: 64px;
+    white-space: normal;
+}
+
+.panel .big-center {
+    font-size: 64px;
+    color: rgb(34, 23, 42);
+    -unity-text-outline-width: 0;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    min-width: 110px;
+}
+
+/* Подсказки управления — клавиши. */
+.hint {
+    font-size: 15px;
+    color: rgb(255, 241, 218);
+}
+
+.keys {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: rgba(34, 23, 42, 0.86);
+    border-radius: 16px;
+    padding: 8px 12px;
+    max-width: 960px;
+}
+
+.key-item {
+    flex-direction: row;
+    align-items: center;
+    margin: 3px 14px 3px 0;
+}
+
+.keycap {
+    font-size: 14px;
+    color: rgb(34, 23, 42);
+    background-color: rgb(255, 241, 218);
+    border-width: 2px;
+    border-bottom-width: 4px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 8px;
+    padding: 0 7px;
+    margin-right: 6px;
+}
+
+.key-label {
+    font-size: 15px;
+    -unity-font-style: bold;
+    color: rgb(255, 241, 218);
+}
+
+.score-row {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.score-value {
+    font-size: 22px;
+    color: rgb(206, 92, 18);
+    min-width: 46px;
+    flex-shrink: 0;
+    margin-right: 8px;
+    -unity-text-align: middle-right;
+}
+
+.score-row .swatch {
+    flex-shrink: 0;
+    margin-right: 6px;
+}
+
+/* ───────── Карта двора ───────── */
+
+.zone-map {
+    width: 300px;
+    padding: 8px 10px 8px 12px;
+}
+
+.zone-map__head {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.zone-map__title {
+    font-size: 13px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+}
+
+.zone-map__summary {
+    font-size: 12px;
+    color: rgb(110, 92, 107);
+    margin-bottom: 2px;
+}
+
+.zone-map__key {
+    font-size: 11px;
+    padding: 0 5px;
+    margin-right: 0;
+}
+
+.zone-list {
+    margin-top: 2px;
+}
+
+.zone-row {
+    flex-direction: row;
+    align-items: center;
+    height: 22px;
+    padding: 0 6px 0 4px;
+    margin-top: 2px;
+    border-radius: 8px;
+    border-left-width: 4px;
+    border-color: rgba(0, 0, 0, 0);
+    background-color: rgba(34, 23, 42, 0.06);
+}
+
+.zone-row--mine {
+    border-color: rgb(255, 196, 58);
+    background-color: rgba(255, 196, 58, 0.22);
+}
+
+.zone-row--auction {
+    border-color: rgb(255, 127, 42);
+    background-color: rgba(255, 127, 42, 0.22);
+}
+
+.zone-row__dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 7px;
+    border-width: 2px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgba(0, 0, 0, 0);
+    margin-right: 7px;
+}
+
+/* Свободная зона: пустой кружок и бледный текст. */
+.zone-row--free .zone-row__dot {
+    border-color: rgb(160, 145, 158);
+}
+
+.zone-row__name {
+    font-size: 14px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+}
+
+.zone-row--free .zone-row__name {
+    color: rgb(120, 104, 117);
+    -unity-font-style: normal;
+}
+
+.zone-row__owner {
+    font-size: 13px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    margin-right: 6px;
+}
+
+.zone-row--free .zone-row__owner {
+    color: rgb(150, 132, 147);
+    -unity-font-style: italic;
+}
+
+.zone-row--auction .zone-row__owner {
+    color: rgb(206, 92, 18);
+}
+
+.zone-row__price {
+    font-size: 12px;
+    -unity-font-style: bold;
+    color: rgb(206, 92, 18);
+}
+
+.zone-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.zone-tile {
+    width: 142px;
+    min-height: 50px;
+    margin: 3px;
+    border-radius: 12px;
+    justify-content: center;
+    padding: 3px 6px 4px 10px;
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+}
+
+/* Свободная зона — светлая «пустая» плашка с пунктиром смысла: никому не принадлежит. */
+.zone-tile--free {
+    background-color: rgba(255, 241, 218, 0.55);
+    border-color: rgb(150, 132, 147);
+}
+
+.zone-tile--free .zone-tile__label {
+    color: rgb(110, 92, 107);
+    -unity-text-outline-width: 0;
+}
+
+/* Своя зона — золотая обводка. */
+.zone-tile--mine {
+    border-color: rgb(255, 196, 58);
+    border-width: 4px;
+}
+
+.zone-tile--auction {
+    border-color: rgb(255, 196, 58);
+    border-width: 4px;
+}
+
+.zone-tile__label {
+    font-size: 15px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(34, 23, 42);
+}
+
+.zone-tile__owner {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1px;
+}
+
+.zone-tile__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: rgb(255, 255, 255);
+    margin-right: 5px;
+}
+
+.zone-tile__name {
+    font-size: 13px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    background-color: rgba(34, 23, 42, 0.55);
+    border-radius: 6px;
+    padding: 0 5px;
+}
+
+.zone-tile__free {
+    font-size: 12px;
+    color: rgb(110, 92, 107);
+}
+
+/* ───────── Перекуп зоны ───────── */
+
+.buyout-layer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 110px;
+    align-items: center;
+}
+
+.buyout-panel {
+    min-width: 420px;
+    align-items: center;
+}
+
+.buyout-text {
+    font-size: 17px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.buyout-bar {
+    width: 300px;
+    height: 12px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+}
+
+.buyout-fill {
+    height: 100%;
+    width: 0;
+    background-color: rgb(255, 127, 42);
+}
+
+/* ───────── Разборка (старые карты аукциона) ───────── */
+
+.cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.card {
+    width: 128px;
+    height: 150px;
+    margin: 6px;
+    border-radius: 16px;
+    border-width: 4px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 241, 218);
+    color: rgb(34, 23, 42);
+    font-size: 18px;
+    -unity-font-style: bold;
+    white-space: normal;
+    -unity-text-align: middle-center;
+}
+
+.card:disabled {
+    opacity: 0.45;
+}
+
+/* ───────── Настройки ───────── */
+
+.settings-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px 6px 16px;
+    margin-bottom: 8px;
+    background-color: rgb(255, 255, 255);
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 16px;
+}
+
+.settings-row__label {
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+}
+
+.selector {
+    flex-direction: row;
+    align-items: center;
+    width: 330px;
+}
+
+.selector__arrow {
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    border-radius: 22px;
+    border-width: 3px;
+    border-bottom-width: 6px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 241, 218);
+    color: rgb(34, 23, 42);
+    font-size: 22px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.selector__arrow:hover {
+    background-color: rgb(255, 127, 42);
+}
+
+.selector__arrow:active {
+    border-bottom-width: 3px;
+    translate: 0 3px;
+}
+
+.selector__value {
+    flex-grow: 1;
+    font-size: 18px;
+    color: rgb(34, 23, 42);
+    -unity-text-align: middle-center;
+}
+
+.settings-note {
+    font-size: 15px;
+    color: rgb(110, 92, 107);
+    white-space: normal;
+    margin-top: 6px;
+}
+
+.settings-note--top {
+    margin-top: -2px;
+    margin-bottom: 4px;
+    margin-left: 6px;
+}
+
+/* Главная строка вкладки (пресет «Общее качество») — крупнее и с рыжей рамкой. */
+.settings-row--main {
+    background-color: rgb(255, 228, 196);
+    border-color: rgb(255, 127, 42);
+    border-width: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.settings-row--main .settings-row__label {
+    font-size: 21px;
+}
+
+.settings-row--main .selector__value {
+    font-size: 20px;
+    -unity-font-style: bold;
+}
+
+.settings-section {
+    font-size: 15px;
+    -unity-font-style: bold;
+    color: rgb(110, 92, 107);
+    margin: 14px 0 8px 6px;
+}
+
+.settings-scroll {
+    max-height: 480px;
+}
+
+/* Окно настроек одной высоты на всех вкладках — не прыгает при переключении. */
+.settings-panel .tab-pages {
+    height: 480px;
+    min-height: 480px;
+}
+
+.settings-scroll .unity-scroll-view__content-container {
+    padding-right: 8px;
+}
+
+.settings-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+/* ───────── Кошачья свалка ───────── */
+
+.brawl-layer {
+    background-color: rgba(34, 26, 52, 0.80);
+}
+
+.brawl-ring {
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    top: 36%;
+    height: 34%;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.panel--brawl {
+    width: 1180px;
+    max-width: 96%;
+    padding: 0;
+    border-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+    align-items: stretch;
+}
+
+.brawl-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.brawl-title {
+    font-size: 40px;
+    color: rgb(255, 241, 218);
+    -unity-text-outline-width: 3px;
+    -unity-text-outline-color: rgb(34, 23, 42);
+    text-shadow: 5px 5px 0 rgb(34, 23, 42);
+}
+
+.brawl-sub {
+    font-size: 24px;
+    color: rgb(255, 196, 58);
+    margin-top: 2px;
+}
+
+.brawl-timer {
+    width: 76px;
+    height: 76px;
+    border-radius: 38px;
+    border-width: 4px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 127, 42);
+    font-size: 28px;
+    color: rgb(34, 23, 42);
+    -unity-text-align: middle-center;
+    margin-right: 18px;
+}
+
+.seats {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 6px;
+}
+
+.seat {
+    width: 236px;
+    min-height: 120px;
+    margin: 8px 10px 14px 10px;
+    padding: 10px 12px;
+    border-radius: 22px;
+    border-width: 4px;
+    border-bottom-width: 8px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 241, 218);
+    align-items: stretch;
+    justify-content: flex-start;
+    color: rgb(34, 23, 42);
+}
+
+.seat:disabled {
+    opacity: 1;
+}
+
+.seat--me {
+    background-color: rgb(255, 228, 196);
+}
+
+.seat--out {
+    opacity: 0.5;
+}
+
+.seat--selectable:hover {
+    background-color: rgb(255, 250, 240);
+    translate: 0 -3px;
+}
+
+.seat--target {
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 214, 120);
+}
+
+.seat__head {
+    flex-direction: row;
+    align-items: center;
+}
+
+.seat__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.seat__name {
+    font-size: 18px;
+    color: rgb(34, 23, 42);
+    flex-grow: 1;
+    flex-shrink: 1;
+    white-space: normal;
+}
+
+.seat__lives {
+    flex-direction: row;
+    margin-top: 6px;
+}
+
+.seat__life {
+    width: 30px;
+    height: 30px;
+    margin-right: 2px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.seat__status {
+    font-size: 18px;
+    margin-top: 4px;
+}
+
+.seat__tags {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.seat__played {
+    font-size: 13px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    border-width: 2px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 9px;
+    padding: 2px 8px;
+    margin: 6px 6px 0 0;
+    white-space: normal;
+}
+
+.seat__badge {
+    font-size: 13px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    border-width: 2px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 9px;
+    padding: 2px 8px;
+    margin: 6px 6px 0 0;
+}
+
+.seat__badge--trick { background-color: rgb(225, 214, 252); }
+.seat__badge--care { background-color: rgb(221, 242, 201); }
+.seat__badge--defense { background-color: rgb(191, 234, 228); }
+.seat__badge--win { background-color: rgb(255, 196, 58); }
+
+.seat__played.type-attack { background-color: rgb(255, 127, 42); }
+.seat__played.type-defense { background-color: rgb(39, 180, 164); }
+.seat__played.type-trick { background-color: rgb(179, 154, 245); }
+.seat__played.type-care { background-color: rgb(149, 214, 106); }
+
+.target-flag {
+    position: absolute;
+    right: -12px;
+    top: -18px;
+    font-size: 20px;
+    color: rgb(34, 23, 42);
+    background-color: rgb(255, 196, 58);
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 12px;
+    padding: 0 10px;
+    rotate: 6deg;
+}
+
+.brawl-middle {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 8px;
+}
+
+.brawl-log {
+    width: 330px;
+    background-color: rgba(34, 23, 42, 0.88);
+    border-radius: 20px;
+    padding: 12px 16px;
+    min-height: 60px;
+}
+
+.brawl-log__title {
+    font-size: 22px;
+    color: rgb(255, 196, 58);
+    margin-bottom: 4px;
+}
+
+.brawl-log__line {
+    font-size: 15px;
+    -unity-font-style: bold;
+    color: rgb(255, 241, 218);
+    margin: 1px 0;
+    white-space: normal;
+}
+
+.brawl-prompt {
+    margin-top: 14px;
+    -unity-text-align: middle-center;
+    color: rgb(255, 241, 218);
+    font-size: 22px;
+}
+
+.brawl-hand {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 12px;
+}
+
+.brawl-actions {
+    width: 320px;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.brawl-choice {
+    background-color: rgb(255, 241, 218);
+    border-width: 4px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 20px;
+    padding: 10px 14px;
+    margin-bottom: 4px;
+}
+
+.gift-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 6px;
+}
+
+.gift-note {
+    color: rgb(255, 241, 218);
+    -unity-text-align: middle-center;
+    margin-top: 10px;
+}
+
+/* Карта в руке — как на макете: цветной верх со значком, сила в тёмном круге, имя и эффект. */
+.bcard {
+    width: 178px;
+    height: 284px;
+    margin: 0 7px;
+    padding: 0;
+    border-radius: 20px;
+    border-width: 4px;
+    border-bottom-width: 9px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 241, 218);
+    flex-direction: column;
+    overflow: hidden;
+    transition-property: translate, rotate;
+    transition-duration: 0.1s;
+}
+
+.bcard:hover {
+    translate: 0 -12px;
+    background-color: rgb(255, 241, 218);
+}
+
+.bcard:disabled {
+    opacity: 0.45;
+}
+
+.bcard--selected {
+    translate: 0 -26px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 248, 232);
+}
+
+.bcard__top {
+    height: 104px;
+    flex-shrink: 0;
+    border-bottom-width: 4px;
+    border-color: rgb(34, 23, 42);
+    align-items: center;
+    justify-content: center;
+}
+
+.bcard__icon-plate {
+    width: 78px;
+    height: 78px;
+    border-radius: 39px;
+    border-width: 4px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 241, 218);
+    align-items: center;
+    justify-content: center;
+}
+
+.bcard__icon {
+    width: 50px;
+    height: 50px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.bcard__badge {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 6px;
+    border-radius: 19px;
+    background-color: rgb(34, 23, 42);
+    color: rgb(255, 241, 218);
+    font-size: 18px;
+    -unity-text-align: middle-center;
+}
+
+.bcard__target {
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    font-size: 12px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    background-color: rgb(255, 241, 218);
+    border-width: 2px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 8px;
+    padding: 0 6px;
+}
+
+.bcard__body {
+    flex-grow: 1;
+    padding: 8px 12px 6px 12px;
+}
+
+.bcard__name {
+    font-size: 16px;
+    color: rgb(34, 23, 42);
+    white-space: normal;
+    margin-bottom: 3px;
+}
+
+.bcard__main {
+    font-size: 14px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    white-space: normal;
+}
+
+.bcard__sub {
+    font-size: 12px;
+    color: rgb(110, 92, 107);
+    white-space: normal;
+    margin-top: 3px;
+}
+
+.bcard__footer {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 12px 6px 12px;
+}
+
+.bcard__type {
+    font-size: 17px;
+}
+
+.bcard.type-attack .bcard__top { background-color: rgb(255, 127, 42); }
+.bcard.type-attack .bcard__type { color: rgb(180, 80, 26); }
+
+.bcard.type-defense .bcard__top { background-color: rgb(39, 180, 164); }
+.bcard.type-defense .bcard__type { color: rgb(23, 121, 110); }
+
+.bcard.type-trick .bcard__top { background-color: rgb(179, 154, 245); }
+.bcard.type-trick .bcard__type { color: rgb(106, 79, 192); }
+
+.bcard.type-care .bcard__top { background-color: rgb(149, 214, 106); }
+.bcard.type-care .bcard__type { color: rgb(76, 138, 42); }
+
+/* ───────── Рыбка-валюта ───────── */
+.fish-amount {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.fish-icon {
+    margin-left: 5px;
+    flex-shrink: 0;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+/* ───────── Вкладки настроек ───────── */
+
+.tabs {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 6px 0 16px 0;
+}
+
+.tab {
+    height: 46px;
+    margin: 0 8px 0 0;
+    padding: 0 18px;
+    border-width: 3px;
+    border-bottom-width: 3px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 14px;
+    background-color: rgb(242, 223, 194);
+    color: rgb(34, 23, 42);
+    font-size: 17px;
+    -unity-font-style: bold;
+}
+
+.tab:hover {
+    background-color: rgb(255, 241, 218);
+}
+
+.tab:active {
+    translate: 0 0;
+    border-bottom-width: 3px;
+}
+
+.tab--active {
+    background-color: rgb(255, 127, 42);
+    border-bottom-width: 6px;
+}
+
+.tab--active:hover {
+    background-color: rgb(255, 150, 80);
+}
+
+.tab-pages {
+    min-height: 360px;
+}
+
+/* ───────── Главное меню ───────── */
+
+.menu-root {
+    padding: 44px 72px;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.menu-columns {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.skin-card-wrap {
+    width: 560px;
+    rotate: -1.6deg;
+}
+
+.tape {
+    position: absolute;
+    top: -16px;
+    left: 228px;
+    width: 104px;
+    height: 30px;
+    rotate: 3deg;
+    -unity-background-scale-mode: stretch-to-fill;
+}
+
+.skin-card {
+    width: 560px;
+    max-width: 100%;
+    padding: 20px;
+    border-radius: 28px;
+}
+
+.skin-preview-image {
+    height: 330px;
+    -unity-background-scale-mode: scale-and-crop;
+    border-radius: 20px;
+    border-width: 4px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(58, 51, 88);
+    margin-bottom: 14px;
+}
+
+.skin-preview-note {
+    position: absolute;
+    left: 14px;
+    top: 10px;
+    font-size: 26px;
+    color: rgb(255, 241, 218);
+    rotate: -3deg;
+}
+
+.skin-row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.skin-arrow {
+    width: 52px;
+    height: 52px;
+    margin: 0;
+    padding: 0;
+    border-radius: 26px;
+    border-bottom-width: 8px;
+    font-size: 24px;
+    -unity-text-align: middle-center;
+}
+
+.skin-arrow:active {
+    translate: 0 4px;
+}
+
+.skin-name-box {
+    flex-grow: 1;
+    align-items: center;
+}
+
+.skin-name {
+    font-size: 30px;
+    color: rgb(34, 23, 42);
+    -unity-text-align: middle-center;
+}
+
+.skin-count {
+    font-size: 15px;
+    -unity-font-style: bold;
+    color: rgb(110, 92, 107);
+}
+
+.skin-dots {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 14px;
+    padding: 0 4px;
+}
+
+.skin-dot {
+    width: 32px;
+    height: 32px;
+    margin: 0;
+    padding: 0;
+    border-radius: 16px;
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+}
+
+.skin-dot--active {
+    border-width: 4px;
+    border-color: rgb(255, 127, 42);
+    scale: 1.2 1.2;
+}
+
+.menu-form {
+    width: 500px;
+    padding: 28px 30px;
+    border-radius: 28px;
+    margin-top: 0;
+}
+
+.version {
+    position: absolute;
+    right: 74px;
+    bottom: 22px;
+    font-size: 14px;
+    color: rgb(169, 158, 200);
+}
+
+/* Поправки поверх общих классов. */
+.logo-row .subtitle {
+    color: rgb(255, 127, 42);
+    font-size: 36px;
+}
+
+.menu-backdrop {
+    -unity-background-image-tint-color: rgb(92, 82, 128);
+}
+
+/* ───────── «Кто опрокинул вазу»: голосование ───────── */
+
+.vote-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 14px 0 8px 0;
+    max-width: 640px;
+}
+
+.vote-option {
+    flex-direction: row;
+    align-items: center;
+    width: 196px;
+    margin: 6px;
+    padding: 0 14px;
+}
+
+.vote-option .swatch {
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.vote-option__name {
+    flex-grow: 1;
+    font-size: 19px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+    color: rgb(34, 23, 42);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vote-option--draft {
+    background-color: rgb(196, 226, 240);
+}
+
+.vote-option--draft .vote-option__name {
+    -unity-text-align: middle-center;
+}
+
+.vote-option--chosen {
+    background-color: rgb(255, 196, 58);
+    border-bottom-width: 4px;
+    translate: 0 4px;
+}
+
+.vote-option--chosen:hover {
+    background-color: rgb(255, 210, 100);
+}
+
+/* ───────── «Колбаса с кухни»: «Замри!» ───────── */
+
+.freeze-sign {
+    align-items: center;
+    padding: 8px 30px 12px 30px;
+    border-radius: 22px;
+    border-width: 5px;
+    border-bottom-width: 10px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(232, 64, 52);
+    rotate: -3deg;
+    position: absolute;
+    top: 88px;
+    left: 50%;
+    translate: -50% 0;
+}
+
+.freeze-sign__title {
+    font-size: 46px;
+    -unity-font-style: bold;
+    color: rgb(255, 246, 234);
+    -unity-text-align: middle-center;
+}
+
+.freeze-sign__sub {
+    font-size: 20px;
+    color: rgb(255, 222, 200);
+    -unity-text-align: middle-center;
+    margin-top: -6px;
+}
+
+/* ───────── «Ночной концерт»: дорожка нот ───────── */
+
+.concert {
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    translate: -50% 0;
+    width: 820px;
+    align-items: stretch;
+}
+
+.concert-track {
+    height: 124px;
+    border-radius: 18px;
+    border-width: 4px;
+    border-bottom-width: 8px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgba(28, 24, 52, 0.86);
+    overflow: hidden;
+    padding: 6px 0;
+}
+
+.concert-track--stunned {
+    background-color: rgba(90, 30, 30, 0.86);
+}
+
+.concert-lane {
+    height: 56px;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 8px;
+    border-bottom-width: 1px;
+    border-color: rgba(255, 246, 234, 0.12);
+}
+
+.concert-lane--meow {
+    background-color: rgba(255, 196, 58, 0.08);
+}
+
+.concert-lane--hiss {
+    background-color: rgba(120, 200, 255, 0.07);
+}
+
+.concert-lane__key {
+    scale: 0.85 0.85;
+}
+
+.concert-hitline {
+    position: absolute;
+    left: 92px;
+    top: 4px;
+    bottom: 4px;
+    width: 8px;
+    border-radius: 4px;
+    background-color: rgb(255, 246, 234);
+    opacity: 0.85;
+}
+
+.concert-notes {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.concert-note {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    align-items: center;
+    justify-content: center;
+    transition-property: scale, opacity;
+    transition-duration: 0.15s;
+}
+
+.concert-note--meow {
+    background-color: rgb(255, 196, 58);
+}
+
+.concert-note--hiss {
+    background-color: rgb(120, 200, 255);
+}
+
+.concert-note--hit {
+    scale: 1.6 1.6;
+    opacity: 0;
+}
+
+.concert-note--miss {
+    opacity: 0.25;
+}
+
+.concert-note__label {
+    font-size: 22px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    -unity-text-align: middle-center;
+}
+
+.concert-info {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 6px;
+}
+
+.concert-judgement {
+    font-size: 34px;
+    -unity-font-style: bold;
+    color: rgb(255, 246, 234);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(34, 23, 42);
+}
+
+.concert-combo {
+    font-size: 24px;
+    -unity-font-style: bold;
+    color: rgb(255, 196, 58);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(34, 23, 42);
+}
+
+.concert-boots {
+    font-size: 18px;
+    color: rgb(255, 246, 234);
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(34, 23, 42);
+}
+
+/* ───────── «Форточка»: шкала шума ───────── */
+
+.noise-meter {
+    position: absolute;
+    top: 118px;
+    left: 50%;
+    translate: -50% 0;
+    width: 380px;
+    align-items: center;
+}
+
+.noise-meter__label {
+    font-size: 19px;
+    -unity-font-style: bold;
+    color: rgb(255, 246, 234);
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(34, 23, 42);
+    margin-bottom: 4px;
+}
+
+.noise-meter__bar {
+    width: 100%;
+    height: 22px;
+    border-radius: 11px;
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgba(34, 23, 42, 0.6);
+    overflow: hidden;
+}
+
+.noise-meter__fill {
+    height: 100%;
+    width: 0;
+    border-radius: 8px;
+    background-color: rgb(115, 205, 128);
+}
+
+.noise-meter__mark {
+    position: absolute;
+    left: 70%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-color: rgba(255, 246, 234, 0.7);
+}
+
+/* ───────── Голосование: карточки вариантов ───────── */
+
+.vote-strip {
+    position: absolute;
+    top: 104px;
+    left: 0;
+    right: 0;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.vote-card {
+    width: 214px;
+    margin: 0 7px;
+    padding: 9px 12px 10px 12px;
+    background-color: rgb(255, 241, 218);
+    border-width: 4px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 18px;
+    transition-property: scale, opacity, translate;
+    transition-duration: 0.12s;
+}
+
+.vote-card--mine {
+    border-color: rgb(255, 196, 58);
+    border-width: 5px;
+    translate: 0 6px;
+}
+
+.vote-card--lit {
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(255, 196, 58);
+    scale: 1.07 1.07;
+}
+
+.vote-card--winner {
+    background-color: rgb(255, 214, 92);
+    border-color: rgb(34, 23, 42);
+    border-width: 5px;
+    scale: 1.12 1.12;
+}
+
+.vote-card--dim {
+    opacity: 0.45;
+    scale: 0.94 0.94;
+}
+
+.vote-card__head {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.vote-card__num {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    font-size: 17px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    -unity-text-align: middle-center;
+    margin-right: 8px;
+    padding: 0;
+}
+
+.vote-card__genre {
+    font-size: 13px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    border-radius: 9px;
+    padding: 2px 9px;
+    -unity-text-outline-width: 0.5px;
+    -unity-text-outline-color: rgb(34, 23, 42);
+}
+
+.vote-card__title {
+    font-size: 19px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    white-space: normal;
+}
+
+.vote-card__tag {
+    font-size: 14px;
+    color: rgb(110, 92, 107);
+    white-space: normal;
+    min-height: 34px;
+    margin-top: 2px;
+}
+
+.vote-card__footer {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 6px;
+    min-height: 24px;
+}
+
+.vote-card__voter {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    margin-bottom: 2px;
+}
+
+.vote-card__voter--me {
+    border-color: rgb(255, 196, 58);
+}
+
+.vote-card__empty {
+    font-size: 13px;
+    color: rgb(150, 132, 147);
+}
+
+.vote-card__prize {
+    font-size: 15px;
+    -unity-font-style: bold;
+    color: rgb(206, 92, 18);
+}
+
+/* ───────── Кошачья рулетка ───────── */
+
+.hud-roulette {
+    position: absolute;
+    right: 24px;
+    bottom: 330px;
+    width: 300px;
+}
+
+.roulette-head {
+    flex-direction: row;
+    align-items: center;
+}
+
+.roulette-icon {
+    width: 34px;
+    height: 34px;
+    margin-right: 8px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.roulette-status {
+    font-size: 17px;
+    -unity-font-style: bold;
+}
+
+.roulette-win {
+    color: rgb(206, 92, 18);
+    -unity-font-style: bold;
+    font-size: 17px;
+}
+
+.roulette-notice {
+    font-size: 15px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    background-color: rgb(255, 196, 58);
+    border-radius: 10px;
+    padding: 3px 10px;
+    margin-top: 6px;
+    white-space: normal;
+}
+
+.roulette-keys {
+    margin-top: 8px;
+}
+
+/* ───────── Номинации в финале ───────── */
+
+.nominations {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 4px;
+}
+
+.nomination {
+    width: 236px;
+    min-height: 82px;
+    margin: 5px;
+    padding: 8px 10px;
+    border-radius: 16px;
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 255, 255);
+    transition-property: scale, opacity;
+    transition-duration: 0.25s;
+}
+
+.nomination--hidden {
+    background-color: rgba(34, 23, 42, 0.12);
+    border-color: rgba(34, 23, 42, 0.3);
+    justify-content: center;
+    align-items: center;
+}
+
+.nomination--hidden .nomination__title {
+    font-size: 30px;
+    color: rgba(34, 23, 42, 0.35);
+}
+
+.nomination--new {
+    border-color: rgb(255, 196, 58);
+    border-width: 4px;
+    scale: 1.04 1.04;
+}
+
+.nomination--me {
+    background-color: rgb(255, 236, 190);
+}
+
+.nomination__title {
+    font-size: 16px;
+    -unity-font-style: bold;
+    color: rgb(206, 92, 18);
+    white-space: normal;
+}
+
+.nomination__who {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.nomination__who .swatch {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+}
+
+.nomination__name {
+    font-size: 16px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+}
+
+.nomination__detail {
+    font-size: 13px;
+    color: rgb(110, 92, 107);
+    margin-top: 2px;
+    white-space: normal;
+}
+
+.final-buttons {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ───────── Магазин аксессуаров ───────── */
+
+.shop-row {
+    margin-top: 12px;
+    align-items: center;
+}
+
+.shop-row__cans {
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(255, 241, 218);
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 14px;
+    padding: 4px 12px;
+}
+
+.shop-row__value {
+    font-size: 24px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    margin-right: 6px;
+}
+
+.shop-head {
+    flex-direction: row;
+    align-items: center;
+    width: 1080px;
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+
+.shop-wallet {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.shop-wallet__label {
+    font-size: 20px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+}
+
+.shop-cans {
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 14px;
+    padding: 2px 12px;
+}
+
+.shop-cans__value {
+    font-size: 26px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    margin-right: 8px;
+}
+
+.shop-preview-card .skin-preview-image {
+    height: 420px;
+}
+
+.shop-preview-card .btn {
+    margin-top: 12px;
+}
+
+.shop-panel {
+    width: 500px;
+}
+
+.shop-list {
+    margin-top: 12px;
+}
+
+.shop-item {
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+    margin: 0 0 6px 0;
+    padding: 0 12px;
+    border-radius: 14px;
+    border-width: 3px;
+    border-color: rgba(34, 23, 42, 0.25);
+    background-color: rgb(255, 255, 255);
+}
+
+.shop-item:hover {
+    border-color: rgb(34, 23, 42);
+}
+
+.shop-item--selected {
+    border-color: rgb(255, 127, 42);
+    border-width: 4px;
+    background-color: rgb(255, 236, 214);
+}
+
+.shop-item .swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+}
+
+.shop-item__name {
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+}
+
+.shop-item__price {
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: rgb(206, 92, 18);
+    margin-right: 4px;
+}
+
+.shop-item__tag {
+    font-size: 14px;
+    -unity-font-style: bold;
+    color: rgb(110, 92, 107);
+    background-color: rgba(34, 23, 42, 0.08);
+    border-radius: 8px;
+    padding: 2px 8px;
+}
+
+.shop-item__tag--on {
+    color: rgb(255, 255, 255);
+    background-color: rgb(39, 180, 164);
+}
+
+.shop-hint {
+    margin-top: 8px;
+}
+
+/* ───────── Банки в финале ───────── */
+
+.can-reward {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
+
+.final-king-reward {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+}
+
+.final-king-reward .can-reward {
+    position: relative;
+    right: auto;
+    top: auto;
+    margin-left: 8px;
+}
+
+.can-reward__badge {
+    flex-direction: row;
+    align-items: center;
+    background-color: rgb(255, 196, 58);
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    border-radius: 12px;
+    padding: 1px 6px 1px 8px;
+    scale: 1 1;
+    transition-property: scale, rotate;
+    transition-duration: 0.45s;
+    transition-timing-function: ease-out-back;
+}
+
+.can-reward__badge--start {
+    scale: 0 0;
+    rotate: -30deg;
+}
+
+.can-reward__text {
+    font-size: 16px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    margin-right: 2px;
+}
+
+/* Банка, которая выпрыгивает из значка и улетает вверх. */
+.can-fly {
+    position: absolute;
+    left: 6px;
+    top: -2px;
+    opacity: 1;
+    translate: 0 0;
+    scale: 0.6 0.6;
+    transition-property: translate, scale, opacity, rotate;
+    transition-duration: 1.2s;
+    transition-timing-function: ease-out;
+}
+
+.can-fly--go {
+    translate: 0 -70px;
+    scale: 1.6 1.6;
+    rotate: 25deg;
+    opacity: 0;
+}
+
+.final-cans {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.final-cans > * {
+    margin: 0 4px;
+}
+
+.final-cans__value {
+    font-size: 22px;
+    -unity-font-style: bold;
+    color: rgb(206, 92, 18);
+    margin-right: 4px;
+}
+
+.nomination--me {
+    padding-right: 76px;
+}
+
+.shop-scroll {
+    height: 430px;
+    margin-top: 12px;
+}
+
+.shop-scroll .shop-list {
+    margin-top: 0;
+    padding-right: 6px;
+}
+
+/* ───────── Игры в локальной сети (главное меню) ───────── */
+
+.lan-box {
+    margin-top: 2px;
+}
+
+.lan-list {
+    max-height: 196px;
+    overflow: hidden;
+}
+
+.lan-row {
+    background-color: rgb(255, 230, 196);
+    border-color: rgb(34, 23, 42);
+    padding: 6px 8px 6px 14px;
+}
+
+.lan-row__name {
+    font-size: 19px;
+    -unity-font-style: bold;
+}
+
+.lan-row__meta {
+    font-size: 14px;
+    margin-top: 0;
+}
+
+.lan-row__join {
+    margin-top: 0;
+    margin-left: 8px;
+    width: 110px;
+}
+
+.lan-empty {
+    padding: 10px 14px;
+    border-radius: 14px;
+    border-width: 3px;
+    border-color: rgba(34, 23, 42, 0.35);
+    margin-top: 6px;
+}
+
+.lan-empty__title {
+    font-size: 20px;
+    color: rgb(34, 23, 42);
+}
+
+.lan-empty__text {
+    font-size: 14px;
+    white-space: normal;
+    margin-top: 2px;
+}
+
+.lan-manual-toggle {
+    margin-top: 8px;
+    align-self: flex-start;
+}
+
+.code-box {
+    margin-top: 8px;
+}
+
+/* Лобби: код и кнопка копирования в одну строку, кнопка не сжимается. */
+.lobby-code-row {
+    align-items: center;
+}
+
+.lobby-code {
+    flex-grow: 1;
+    flex-shrink: 1;
+    white-space: normal;
+    margin-right: 12px;
+}
+
+.lobby-copy {
+    flex-shrink: 0;
+    width: 150px;
+    padding: 0 10px;
+}
+
+/* ───────── Полоса прокрутки в стиле «двор-стикер» (настройки, магазин) ───────── */
+
+.settings-scroll .unity-scroller--vertical,
+.shop-scroll .unity-scroller--vertical {
+    width: 10px;
+    margin-left: 6px;
+    border-width: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* Стрелки вверх/вниз не нужны — колёсико и перетаскивание. */
+.settings-scroll .unity-scroller__low-button,
+.settings-scroll .unity-scroller__high-button,
+.shop-scroll .unity-scroller__low-button,
+.shop-scroll .unity-scroller__high-button {
+    display: none;
+}
+
+.settings-scroll .unity-scroller__slider,
+.shop-scroll .unity-scroller__slider {
+    margin: 0;
+    width: 10px;
+    flex-grow: 1;
+}
+
+/* Дорожка — кремовая «канавка» с тёмным контуром. */
+.settings-scroll .unity-base-slider__tracker,
+.shop-scroll .unity-base-slider__tracker {
+    left: 1px;
+    right: 1px;
+    top: 0;
+    bottom: 0;
+    width: auto;
+    margin: 0;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(242, 223, 194);
+}
+
+/* Ползунок — рыжая «таблетка» с толстым нижним краем, как у кнопок. */
+.settings-scroll .unity-base-slider__dragger,
+.shop-scroll .unity-base-slider__dragger {
+    left: 0;
+    width: 10px;
+    min-height: 32px;
+    margin: 0;
+    border-width: 2px;
+    border-bottom-width: 3px;
+    border-radius: 5px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 127, 42);
+}
+
+.settings-scroll .unity-base-slider__dragger:hover,
+.shop-scroll .unity-base-slider__dragger:hover {
+    background-color: rgb(255, 150, 80);
+}
+
+.settings-scroll .unity-base-slider__dragger:active,
+.shop-scroll .unity-base-slider__dragger:active {
+    background-color: rgb(255, 196, 58);
+}
+
+.settings-scroll .unity-base-slider__dragger-border,
+.shop-scroll .unity-base-slider__dragger-border {
+    display: none;
+}
+
+/* ───────── Консоль разработчика ───────── */
+
+.console {
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    top: 16px;
+    height: 46%;
+    padding: 12px 14px 12px 16px;
+    border-width: 4px;
+    border-radius: 18px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgba(42, 36, 64, 0.96);
+}
+
+.console__header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.console__title {
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: rgb(255, 196, 58);
+}
+
+.console__hint {
+    font-size: 13px;
+    color: rgb(190, 176, 200);
+}
+
+.console__log {
+    flex-grow: 1;
+    margin-bottom: 8px;
+    padding: 6px 8px;
+    border-radius: 10px;
+    background-color: rgba(20, 16, 32, 0.6);
+}
+
+.console__line {
+    font-size: 15px;
+    white-space: normal;
+    margin: 0;
+    padding: 1px 0;
+    color: rgb(255, 241, 218);
+}
+
+.console__line--ok { color: rgb(149, 214, 106); }
+.console__line--warn { color: rgb(255, 196, 58); }
+.console__line--error { color: rgb(255, 120, 100); }
+.console__line--input { color: rgb(255, 127, 42); -unity-font-style: bold; }
+
+.console__input-row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.console__prompt {
+    font-size: 20px;
+    -unity-font-style: bold;
+    color: rgb(255, 127, 42);
+    margin-right: 8px;
+}
+
+.console__input {
+    flex-grow: 1;
+    margin: 0;
+}
+
+.console__input .unity-text-field__input,
+.console__input .unity-base-text-field__input {
+    height: 38px;
+    font-size: 17px;
+    padding: 0 12px;
+    border-width: 3px;
+    border-radius: 12px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 241, 218);
+    color: rgb(34, 23, 42);
+}
+
+/* Тонкая полоса прокрутки журнала — тот же стикер-стиль. */
+.console__log .unity-scroller__low-button,
+.console__log .unity-scroller__high-button { display: none; }
+.console__log .unity-scroller--vertical { width: 10px; border-width: 0; background-color: rgba(0, 0, 0, 0); }
+.console__log .unity-scroller__slider { margin: 0; width: 10px; flex-grow: 1; }
+.console__log .unity-base-slider__tracker {
+    left: 1px; right: 1px; top: 0; bottom: 0; width: auto; margin: 0;
+    border-width: 2px; border-radius: 5px; border-color: rgb(34, 23, 42); background-color: rgb(70, 60, 98);
+}
+.console__log .unity-base-slider__dragger {
+    left: 0; width: 10px; min-height: 32px; margin: 0;
+    border-width: 2px; border-bottom-width: 3px; border-radius: 5px;
+    border-color: rgb(34, 23, 42); background-color: rgb(255, 127, 42);
+}
+.console__log .unity-base-slider__dragger-border { display: none; }
+.console__log .unity-scroller--horizontal { display: none; }
+
+/* ───────── Лобби: игроки + друзья Steam ───────── */
+
+.lobby-panel--wide {
+    width: 1000px;
+}
+
+.lobby-columns {
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.lobby-main {
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 0;
+}
+
+.lobby-friends {
+    width: 380px;
+    flex-shrink: 0;
+    margin-left: 26px;
+    padding-left: 24px;
+    border-left-width: 3px;
+    border-color: rgb(226, 204, 172);
+}
+
+.lobby-friends__title {
+    margin-top: 6px;
+}
+
+.lobby-friends__hint {
+    white-space: normal;
+    margin: 2px 0 10px 0;
+}
+
+.lobby-friends__list {
+    flex-grow: 1;
+    max-height: 420px;
+    min-height: 200px;
+}
+
+.lobby-friends__steam {
+    margin-top: 10px;
+}
+
+.friend-row {
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 8px;
+    margin-bottom: 6px;
+    border-radius: 14px;
+    border-width: 3px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 255, 255);
+}
+
+.friend-row__avatar {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(226, 204, 172);
+    -unity-background-scale-mode: scale-and-crop;
+    margin-right: 10px;
+}
+
+.friend-row__text {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.friend-row__name {
+    font-size: 17px;
+    -unity-font-style: bold;
+    color: rgb(34, 23, 42);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.friend-row__status {
+    font-size: 13px;
+}
+
+.friend-row__status--online { color: rgb(46, 125, 82); }
+.friend-row__status--game { color: rgb(255, 127, 42); -unity-font-style: bold; }
+
+.friend-row__button {
+    flex-shrink: 0;
+    width: 120px;
+    margin: 0 0 0 8px;
+}
+
+/* ───────── Плашка «Тебя зовут в игру» ───────── */
+
+.invite-toast {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    translate: -50% 0;
+    width: 520px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px 14px 20px;
+    border-width: 4px;
+    border-radius: 18px;
+    border-color: rgb(34, 23, 42);
+    background-color: rgb(255, 241, 218);
+}
+
+.invite-toast__text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    font-size: 19px;
+    white-space: normal;
+    color: rgb(34, 23, 42);
+}
+
+.invite-toast__buttons {
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+.invite-toast__buttons .btn--small {
+    width: 96px;
+    margin: 0 0 0 8px;
+}

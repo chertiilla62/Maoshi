@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a8f546946a5bf4086e1fc65668e764, type: 3}
+  m_Name: MouseHoles
+  m_EditorClassIdentifier: Assembly-CSharp::Maoshi.Session.MiniGameDefinition
+  id: mouse_holes
+  displayName: "\u041C\u044B\u0448\u0438\u043D\u044B\u0435 \u043D\u043E\u0440\u043A\u0438"
+  description: "\u041C\u044B\u0448\u0438 \u0432\u044B\u0441\u043A\u0430\u043A\u0438\u0432\u0430\u044E\u0442
+    \u0438\u0437 \u043D\u043E\u0440\u043E\u043A. \u041B\u043E\u0432\u0438 \u0431\u043E\u043B\u044C\u0448\u0435
+    \u0432\u0441\u0435\u0445! \u0417\u043E\u043B\u043E\u0442\u0430\u044F \u043C\u044B\u0448\u044C
+    \u2014 3 \u043E\u0447\u043A\u0430."
+  sceneName: MouseHoles
+  minPlayers: 2
+  fishByPlace: 0a00000007000000050000000400000003000000020000000100000001000000

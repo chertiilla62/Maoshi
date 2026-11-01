@@ -1,0 +1,15 @@
+/* Шрифты дизайна. Собирает Maoshi → Setup → Stage 20 по файлам в UI/Fonts. */
+
+.maoshi-root {
+    -unity-font-definition: url("project://database/Assets/_Maoshi/UI/Fonts/Nunito-ExtraBold.ttf");
+}
+
+.title, .h1, .h2, .btn--primary, .btn--secondary, .banner__title, .big-center, .brawl-title, .brawl-timer, .score-value, .seat__name, .bcard__name, .bcard__badge, .skin-name, .skin-arrow, .selector__arrow, .keycap, .tab--active {
+    -unity-font-definition: url("project://database/Assets/_Maoshi/UI/Fonts/DelaGothicOne-Regular.ttf");
+    -unity-font-style: normal;
+}
+
+.chalk {
+    -unity-font-definition: url("project://database/Assets/_Maoshi/UI/Fonts/Neucha-Regular.ttf");
+    -unity-font-style: normal;
+}
