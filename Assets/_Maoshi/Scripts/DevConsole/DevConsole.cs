@@ -158,7 +158,9 @@ namespace Maoshi
             Add("players", "players", "игроки: номер, имя, рыба, зоны", false, _ => Players(), "who");
             Add("fish", "fish <число> [игрок|all]", "дать рыбу (минус — забрать). Игрок — номер из players или начало имени; без него — себе", true, Fish, "givefish");
             Add("stun", "stun [игрок|all]", "оглушить кота (без игрока — своего)", true, Stun);
-            Add("tp", "tp <игрок>", "перенести своего кота к другому коту", false, Teleport, "goto");
+            Add("net", "net", "сеть: пинг каждого игрока, есть ли у него кот, транспорт", false, _ => Net());
+            Add("fixcats", "fixcats", "создать кота тем, у кого его нет (если игрок «завис» без управления)", true, _ => FixCats());
+                        Add("tp", "tp <игрок>", "перенести своего кота к другому коту", false, Teleport, "goto");
 
             Add("cans", "cans <число>", "добавить консервные банки (магазин, хранятся на этом ПК)", false, Cans);
             Add("quality", "quality <0-3>", "общее качество: 0 низкое, 1 среднее, 2 высокое, 3 ультра", false, Quality);
@@ -325,6 +327,37 @@ namespace Maoshi
                 return new List<NetworkPlayer>();
             }
             return targets;
+        }
+
+        private static void Net()
+        {
+            var net = NetworkManager.Singleton;
+            if (net == null || !net.IsListening) { Print("Сеть не запущена.", Kind.Warn); return; }
+            var transport = net.NetworkConfig.NetworkTransport;
+            Print($"Транспорт: {transport.GetType().Name} · {(net.IsServer ? "ты хост" : "ты клиент")} · игроков {NetworkPlayer.All.Count}", Kind.Ok);
+            foreach (var p in NetworkPlayer.All)
+            {
+                ulong id = p.OwnerClientId;
+                string ping = "—";
+                try
+                {
+                    if (net.IsServer && id != NetworkManager.ServerClientId) ping = transport.GetCurrentRtt(id) + " мс";
+                    else if (!net.IsServer && id == NetworkManager.ServerClientId) ping = transport.GetCurrentRtt(id) + " мс";
+                }
+                catch (Exception) { }
+                bool cat = CatController.FindByOwner(id) != null;
+                Print($"  {p.DisplayName} (id {id}) · пинг {ping} · кот {(cat ? "есть" : "НЕТ")}", cat ? Kind.Info : Kind.Warn);
+            }
+        }
+
+        private static void FixCats()
+        {
+            var spawner = Maoshi.Gameplay.CatSpawner.Current;
+            if (spawner == null) { Print("В этой сцене нет расстановки котов.", Kind.Warn); return; }
+            int fixedCount = 0;
+            foreach (ulong id in NetworkManager.Singleton.ConnectedClientsIds)
+                if (spawner.EnsureCat(id)) fixedCount++;
+            Print(fixedCount > 0 ? $"Создано котов: {fixedCount}." : "У всех уже есть коты.", Kind.Ok);
         }
 
         private static void Fish(string[] args)

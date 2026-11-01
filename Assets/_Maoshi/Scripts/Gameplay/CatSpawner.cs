@@ -35,6 +35,8 @@ namespace Maoshi.Gameplay
 
         private readonly HashSet<ulong> _spawnedFor = new();
         private readonly Dictionary<ulong, (Vector3 position, Quaternion rotation)> _poses = new();
+        // Игроки, не успевшие загрузить сцену к общему событию: их место в раскладке, кот — когда догрузятся.
+        private readonly Dictionary<ulong, (int index, int total)> _late = new();
 
         /// <summary>Спавнер текущей сцены (сервер и клиенты).</summary>
         public static CatSpawner Current { get; private set; }
@@ -44,24 +46,62 @@ namespace Maoshi.Gameplay
             Current = this;
             if (!IsServer) return;
             NetworkManager.SceneManager.OnLoadEventCompleted += OnLoadEventCompleted;
+            NetworkManager.SceneManager.OnSceneEvent += OnSceneEvent;
         }
 
         public override void OnNetworkDespawn()
         {
             if (Current == this) Current = null;
             if (NetworkManager != null && NetworkManager.SceneManager != null)
+            {
                 NetworkManager.SceneManager.OnLoadEventCompleted -= OnLoadEventCompleted;
+                NetworkManager.SceneManager.OnSceneEvent -= OnSceneEvent;
+            }
         }
 
         private void OnLoadEventCompleted(string sceneName, LoadSceneMode mode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
         {
             if (sceneName != gameObject.scene.name) return;
 
+            // Места раздаём всем (и опоздавшим), чтобы раскладка не съезжала.
             var clients = new List<ulong>(clientsCompleted);
+            foreach (ulong late in clientsTimedOut) if (!clients.Contains(late)) clients.Add(late);
             clients.Sort();
 
             for (int i = 0; i < clients.Count; i++)
-                SpawnCat(clients[i], i, clients.Count);
+            {
+                if (clientsCompleted.Contains(clients[i])) SpawnCat(clients[i], i, clients.Count);
+                else _late[clients[i]] = (i, clients.Count);
+            }
+
+            if (clientsTimedOut.Count > 0)
+                Debug.LogWarning($"[Maoshi] {sceneName}: не успели загрузиться игроки {string.Join(", ", clientsTimedOut)} — кот появится, когда догрузятся.");
+        }
+
+        /// <summary>Сервер: игрок догрузил сцену позже остальных — создаём его кота сейчас.</summary>
+        private void OnSceneEvent(SceneEvent sceneEvent)
+        {
+            if (sceneEvent.SceneEventType != SceneEventType.LoadComplete || sceneEvent.SceneName != gameObject.scene.name) return;
+            ulong clientId = sceneEvent.ClientId;
+            if (clientId == NetworkManager.ServerClientId || _spawnedFor.Contains(clientId)) return;
+            if (!_late.TryGetValue(clientId, out var slot)) return; // обычный случай: кот придёт с общим событием
+
+            _late.Remove(clientId);
+            Debug.Log($"[Maoshi] {sceneEvent.SceneName}: игрок {clientId} догрузился — создаём кота.");
+            SpawnCat(clientId, slot.index, slot.total);
+        }
+
+        /// <summary>Сервер: у подключённого игрока нет кота в этой сцене (консоль, команда respawn).</summary>
+        public bool EnsureCat(ulong clientId)
+        {
+            if (!IsServer || Maoshi.Cat.CatController.FindByOwner(clientId) != null) return false;
+            _spawnedFor.Remove(clientId);
+            var ids = new List<ulong>(NetworkManager.ConnectedClientsIds);
+            ids.Sort();
+            int index = Mathf.Max(0, ids.IndexOf(clientId));
+            _late.Remove(clientId);
+            SpawnCat(clientId, index, ids.Count);
+            return true;
         }
 
         private void SpawnCat(ulong clientId, int index, int total)

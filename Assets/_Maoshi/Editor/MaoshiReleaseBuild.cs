@@ -68,6 +68,21 @@ namespace Maoshi.EditorTools
             Debug.Log($"[Maoshi Build] Оптимизация текстур: изменено {changed} из {guids.Length} (не больше {MaxTextureSize}, сжатие).");
         }
 
+        /// <summary>Поднять версию (0.1.0 → 0.1.1). Игроки с разными версиями не смогут зайти друг к другу — это нарочно.</summary>
+        [MenuItem("Maoshi/Build/Bump Version (patch)")]
+        public static void BumpVersion()
+        {
+            var parts = PlayerSettings.bundleVersion.Split('.');
+            if (parts.Length < 3 || !int.TryParse(parts[2], out int patch))
+            {
+                Debug.LogError($"[Maoshi Build] Не понял версию «{PlayerSettings.bundleVersion}».");
+                return;
+            }
+            PlayerSettings.bundleVersion = $"{parts[0]}.{parts[1]}.{patch + 1}";
+            AssetDatabase.SaveAssets();
+            Debug.Log($"[Maoshi Build] Версия: {PlayerSettings.bundleVersion}");
+        }
+
         [MenuItem("Maoshi/Build/Release Build (Steam)")]
         public static void BuildRelease()
         {

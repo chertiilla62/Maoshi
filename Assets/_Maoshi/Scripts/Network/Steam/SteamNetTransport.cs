@@ -26,6 +26,16 @@ namespace Maoshi.Network
         private Client _client;
         private readonly Dictionary<ulong, Connection> _connections = new();
 
+        // Надёжные сообщения, которые Steam не принял сразу (буфер отправки полон) — досылаем по порядку.
+        private readonly Dictionary<ulong, Queue<(byte[] data, SendType type)>> _pending = new();
+        // Сборка больших сообщений, пришедших частями.
+        private readonly Dictionary<ulong, List<byte>> _assembly = new();
+        private bool _warnedBuffer;
+
+        // Заголовок каждого сообщения: 0 — целое, 1 — часть (дальше будут ещё), 2 — последняя часть.
+        private const byte Whole = 0, Part = 1, LastPart = 2;
+        // Steam не принимает одно сообщение больше 512 КБ — режем на куски поменьше.
+        private const int MaxChunk = 256 * 1024;
         // ───────────────────────── Сокеты Facepunch ─────────────────────────
 
         private class Server : SocketManager
@@ -44,12 +54,17 @@ namespace Maoshi.Network
             public override void OnDisconnected(Connection connection, ConnectionInfo info)
             {
                 connection.Close();
+                Owner._pending.Remove(connection.Id);
+                Owner._assembly.Remove(connection.Id);
                 if (Owner._connections.Remove(connection.Id))
+                {
+                    Debug.Log($"[Maoshi Steam] Игрок {connection.Id} отключился: {info.EndReason} ({info.State})");
                     Owner.Raise(NetworkEvent.Disconnect, connection.Id, default);
+                }
             }
 
             public override void OnMessage(Connection connection, NetIdentity identity, IntPtr data, int size, long messageNum, long recvTime, int channel) =>
-                Owner.Raise(NetworkEvent.Data, connection.Id, Owner.Copy(data, size));
+                Owner.Incoming(connection.Id, data, size);
         }
 
         private class Client : Steamworks.ConnectionManager
@@ -73,14 +88,26 @@ namespace Maoshi.Network
             }
 
             public override void OnMessage(IntPtr data, int size, long messageNum, long recvTime, int channel) =>
-                Owner.Raise(NetworkEvent.Data, Owner.ServerClientId, Owner.Copy(data, size));
+                Owner.Incoming(Owner.ServerClientId, data, size);
 
             public bool Announced => _announced;
         }
 
         // ───────────────────────── NetworkTransport ─────────────────────────
 
-        public override void Initialize(NetworkManager networkManager = null) { }
+        public override void Initialize(NetworkManager networkManager = null)
+        {
+            if (!SteamService.Ready) return;
+            try
+            {
+                // По умолчанию у Steam буфер отправки 512 КБ на соединение: при старте игры хост разом шлёт
+                // сцену двора, котов и объекты всем игрокам — буфер переполнялся и сообщения терялись.
+                SteamNetworkingUtils.SendBufferSize = 16 * 1024 * 1024;
+                SteamNetworkingUtils.SendRateMin = 512 * 1024;
+                SteamNetworkingUtils.SendRateMax = 16 * 1024 * 1024;
+            }
+            catch (Exception e) { Debug.LogWarning("[Maoshi Steam] Настройки сети: " + e.Message); }
+        }
 
         public override bool StartServer()
         {
@@ -110,15 +137,101 @@ namespace Maoshi.Network
                 _ => SendType.Reliable | SendType.NoNagle,
             };
 
+            Connection connection;
             if (_server != null)
             {
-                if (_connections.TryGetValue(clientId, out var connection))
-                    connection.SendMessage(payload.Array, payload.Offset, payload.Count, type);
+                if (!_connections.TryGetValue(clientId, out connection)) return;
             }
-            else if (_client != null)
+            else if (_client != null) connection = _client.Connection;
+            else return;
+
+            bool reliable = (type & SendType.Reliable) != 0;
+            if (payload.Count <= MaxChunk)
             {
-                _client.Connection.SendMessage(payload.Array, payload.Offset, payload.Count, type);
+                Push(clientId, connection, Frame(Whole, payload.Array, payload.Offset, payload.Count), type, reliable);
+                return;
             }
+
+            // Большое сообщение (синхронизация сцены) — частями, по порядку (надёжные сообщения Steam не меняют порядок).
+            for (int offset = 0; offset < payload.Count; offset += MaxChunk)
+            {
+                int length = Math.Min(MaxChunk, payload.Count - offset);
+                byte header = offset + length >= payload.Count ? LastPart : Part;
+                Push(clientId, connection, Frame(header, payload.Array, payload.Offset + offset, length), SendType.Reliable, true);
+            }
+        }
+
+        private static byte[] Frame(byte header, byte[] source, int offset, int length)
+        {
+            var data = new byte[length + 1];
+            data[0] = header;
+            Buffer.BlockCopy(source, offset, data, 1, length);
+            return data;
+        }
+
+        /// <summary>Отправить; если надёжное и Steam сейчас не принял — в очередь (порядок сохраняется).</summary>
+        private void Push(ulong clientId, Connection connection, byte[] data, SendType type, bool reliable)
+        {
+            if (_pending.TryGetValue(clientId, out var queue) && queue.Count > 0)
+            {
+                if (reliable) queue.Enqueue((data, type));
+                return; // ненадёжное (позиции) при заторе — просто пропускаем
+            }
+
+            var result = connection.SendMessage(data, type);
+            if (result == Result.OK || !reliable) return;
+
+            if (!_pending.TryGetValue(clientId, out queue)) _pending[clientId] = queue = new Queue<(byte[], SendType)>();
+            queue.Enqueue((data, type));
+            if (!_warnedBuffer)
+            {
+                _warnedBuffer = true;
+                Debug.LogWarning($"[Maoshi Steam] Steam не принял сообщение ({result}) — досылаем из очереди.");
+            }
+        }
+
+        /// <summary>Дослать очередь: каждый кадр, пока Steam принимает.</summary>
+        private void FlushPending()
+        {
+            if (_pending.Count == 0) return;
+            foreach (var pair in _pending)
+            {
+                var queue = pair.Value;
+                if (queue.Count == 0) continue;
+                Connection connection;
+                if (_server != null) { if (!_connections.TryGetValue(pair.Key, out connection)) { queue.Clear(); continue; } }
+                else if (_client != null) connection = _client.Connection;
+                else { queue.Clear(); continue; }
+
+                while (queue.Count > 0)
+                {
+                    var (data, type) = queue.Peek();
+                    if (connection.SendMessage(data, type) != Result.OK) break;
+                    queue.Dequeue();
+                }
+            }
+        }
+
+        /// <summary>Входящее сообщение: целое — сразу в Netcode, части — собрать и отдать целиком.</summary>
+        private void Incoming(ulong clientId, IntPtr data, int size)
+        {
+            if (size < 1) return;
+            var bytes = new byte[size];
+            Marshal.Copy(data, bytes, 0, size);
+            byte header = bytes[0];
+
+            if (header == Whole)
+            {
+                Raise(NetworkEvent.Data, clientId, new ArraySegment<byte>(bytes, 1, size - 1));
+                return;
+            }
+
+            if (!_assembly.TryGetValue(clientId, out var buffer)) _assembly[clientId] = buffer = new List<byte>(size * 4);
+            for (int i = 1; i < size; i++) buffer.Add(bytes[i]);
+            if (header != LastPart) return;
+
+            _assembly.Remove(clientId);
+            Raise(NetworkEvent.Data, clientId, new ArraySegment<byte>(buffer.ToArray()));
         }
 
         // События приходят из Receive() в начале кадра Netcode (EarlyUpdate) — сразу передаём их в Netcode.
@@ -134,8 +247,9 @@ namespace Maoshi.Network
         {
             try
             {
-                _server?.Receive(64);
-                _client?.Receive(64);
+                _server?.Receive(256);
+                _client?.Receive(256);
+                FlushPending();
             }
             catch (Exception e)
             {
@@ -173,6 +287,8 @@ namespace Maoshi.Network
             return 0;
         }
 
+        protected override void OnPostLateUpdate() => FlushPending();
+
         public override void Shutdown()
         {
             try
@@ -190,6 +306,9 @@ namespace Maoshi.Network
             }
 
             _connections.Clear();
+            _pending.Clear();
+            _assembly.Clear();
+            _warnedBuffer = false;
             _server = null;
             _client = null;
         }
@@ -199,12 +318,5 @@ namespace Maoshi.Network
         private void Raise(NetworkEvent type, ulong clientId, ArraySegment<byte> payload) =>
             InvokeOnTransportEvent(type, clientId, payload, Time.realtimeSinceStartup);
 
-        /// <summary>Копия сообщения из памяти Steam (её освобождают сразу после колбэка).</summary>
-        private ArraySegment<byte> Copy(IntPtr data, int size)
-        {
-            var bytes = new byte[size];
-            Marshal.Copy(data, bytes, 0, size);
-            return new ArraySegment<byte>(bytes);
-        }
     }
 }
